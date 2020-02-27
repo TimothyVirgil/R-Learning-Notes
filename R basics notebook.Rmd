@@ -1,0 +1,108 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+1+2
+```
+
+```{r}
+10%%8
+```
+```{r}
+#creating variables
+variable <- 100
+bank <- 200
+bank
+```
+```{r}
+#ctrl l clears the console
+b
+```
+R Data Types
+numeric - floats and ints
+logicals - booleans
+characters - strings
+```{r}
+#checking data type
+class(1.3)
+```
+Vector basics
+- You can't mix data types in vectors. R will convert data types if you try to.
+
+
+```{r}
+nvec <- c(1,2,3,4,5)
+temps <- c(72,71,68,73,69,75,76)
+names(temps) <- c('Mon','Tue','Wed','Thu','Fri','Sat','Sun')
+
+```
+
+Vector operations
+There are some built in functions: sum, etc.
+
+```{r}
+v1 <- c(1,2,3)
+v2 <- c(5,6,7)
+v1 + v2
+sum(v1)
+mean(v1)
+sd(v1)
+max(v1)
+min(v1)
+prod(v1)
+
+```
+Comparison operators
+```{r}
+5 > 6
+5 < 6
+5 <= 6
+2 == 3
+#careful with spacing var < -2 versus var <- 2
+v1 > v2
+```
+Vector indexing and slicing
+
+```{r}
+v1 <- c(100,200,300)
+v2 <- c('a','b','c')
+v1[1]
+v2[c(1,3)]
+v3 <- c(1,2,3,4,5,6,7,8,9,10)
+v3[2:4] #slicing
+
+```
+Getting help
+```{r}
+help(numeric)
+```
+
+R Basics Training Exercises
+
+```{r}
+2^5
+stock.prices <- c(23,27,23,21,34)
+names(stock.prices) <- c('Mon','Tues','Wed','Thu','Fri')
+
+mean(stock.prices)
+over.23 <- stock.prices > 23
+stock.prices[over.23]
+max(stock.prices)
+```
+

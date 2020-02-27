@@ -1,0 +1,142 @@
+---
+title: "Section 8: Matrices"
+output: html_notebook
+---
+
+Creating a Matrix:
+
+```{r}
+v <- 1:10
+matrix(v)
+matrix(v,nrow = 2)
+matrix(1:12, byrow = FALSE, nrow = 4)
+matrix(1:12, byrow = T, nrow = 4)
+
+goog <- c(450,451,452,445,468)
+msft <- c(230,231,232,233,220)
+
+stocks <- c(goog,msft)
+
+stock.matrix <- matrix(stocks, byrow = T, nrow = 2)
+
+days <- c('Mon','Tue','Wed','Thu','Fri')
+st.names <- c('GOOG','MSFT')
+
+colnames(stock.matrix) <- days
+rownames(stock.matrix) <- st.names
+
+
+```
+
+Matrix Arithmetic
+
+```{r}
+mat <- matrix(1:25,byrow=T,nrow=5)
+mat * 2
+mat / 2
+mat ^ 2
+1 / mat
+
+mat > 15
+
+mat + mat
+
+mat / mat
+
+mat ^ mat
+
+mat %*% mat #This is real matrix multiplication
+```
+
+Matrix Operations
+
+```{r}
+#use the stock matrix from the last code chunk
+
+colSums(stock.matrix)
+rowSums(stock.matrix)
+rowMeans(stock.matrix)
+
+FB <- c(111,112,113,120,145)
+
+tech.stocks <- rbind(stock.matrix,FB)
+tech.stocks
+avg <- rowMeans(tech.stocks)
+avg
+tech.stocks <- cbind(tech.stocks,avg)
+tech.stocks
+```
+
+Matrix Selection and Indexing
+
+```{r}
+V <- c(1,2,3,4,5)
+v[2]
+mat <- matrix(1:50,byrow=T,nrow=5)
+mat
+mat[1,] # first row
+mat[,1] # first column
+mat[1:3,] # first three rows
+#Use slicing to select the rows/columns you want
+
+mat[,-2:0] #What does this do?
+
+
+
+```
+
+Factor and Categorical Matrices
+
+```{r}
+animal <-c('d','c','d','c')
+id <- c(1,2,3,4,5)
+fact.ani <- factor(animal)
+ord.cat <- c('cold','med','hot')
+temps <- c('cold','med','hot','hot','cold','med')
+fact.temp <- factor(temps,ordered=T,levels=c('cold','med','hot'))
+summary(fact.temp)
+
+```
+Matrix Training Exercise
+
+```{r}
+
+#Ex1
+A <- c(1,2,3)
+B <- c(4,5,6)
+
+rbind(A,B)
+
+#Ex2
+
+mat <- matrix(1:9,byrow=T,nrow=3)
+mat
+
+#Ex 3
+
+is.matrix(mat)
+
+#Ex 4
+
+mat2 <- matrix(1:25,byrow=T,nrow=5)
+
+#Ex 5
+
+mat2[2:3,2:3]
+
+#Ex 6
+
+mat2[4:5,4:5]
+
+#Ex7
+
+sum(mat2)
+
+#Ex 8
+
+rand <- matrix(runif(20,min=0,max=100),nrow=4)
+rand
+```
+
+
+
