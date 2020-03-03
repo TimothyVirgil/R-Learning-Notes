@@ -1,0 +1,153 @@
+---
+title: "Section 13: Advanced R Programming"
+output: html_notebook
+---
+
+Built-in R Features
+
+
+```{r}
+(seq(0,100,by=2))#generating a sequence... this is still considered a numeric? Not sure exactly how these data types are classified
+
+
+v <- c(1,10,11,25)
+v <- sort(v) #easy duh, add arguments for decreasing, increasing, etc.
+
+rev(v) #reverse...
+
+str(v)
+
+v <- 1:10
+v2 <- 35:40
+
+append(v,v2)
+
+#is. - check to see if something is a certain data type
+
+#as. - construct new data type out of passed in data type
+
+
+```
+
+Apply
+
+```{r}
+v <- c(1,2,3,4,5)
+
+addrand <- function(x){
+  ran <- sample(1:100,1)
+  return(x+ran)
+}
+
+print(addrand(10))
+
+result <- lapply(v,addrand) #1st arg vector, 2nd arg function
+print(result)
+
+v <- 1:5
+
+times2 <- function(num) {
+  return(num*2)
+}
+
+result <- sapply(v,times2)
+
+print(result)
+
+help(sapply)
+
+#there are various apply functions which produce different outputs
+
+#Anonymous functions
+
+addrand <- function(){
+#code
+}
+
+#Anonymous functions are like lambdas in Python
+
+v <- 1:5
+
+result <- sapply(v,function(num){num*2})
+
+print(result)
+
+#So we just write a functione one time in a sapply
+#it seems that R does not store this function
+
+
+#Apply with multiple inputs
+
+add_choice <- function(num,choice){
+  return(num+choice)
+}
+
+print(add_choice(2,10))
+
+sapply(v,add_choice,choice=100) # add additional arguments for the function
+
+```
+
+Math Functions
+
+```{r}
+abs(-2)#duh
+
+sum(2,3,5)#duh
+
+v <- c(3,5,4)
+
+mean(5,3,2)#This only does the mean of 5... the 3 and 2 are arguments that are... being ignored?
+
+mean(v)
+```
+
+Regular Expression
+
+```{r}
+text <- 'Hi there, do you know who you are voting for?'
+
+grepl('voting',text)
+
+grepl('dog',text) #checks to see if string exists
+
+v <- c('a','b','c','d','d')
+
+grepl('b',v) #expression search each element of vector
+
+grep('b',v) #returns index where 'b' exists
+
+
+
+
+```
+
+Dates and Timestamps
+
+```{r}
+
+Sys.Date()
+
+today <- Sys.Date()
+
+
+class(today)
+
+c <- '1990-01-01'
+
+as.Date(c) #convert string date to date class
+
+my.date <- as.Date('Nov-03-90',format = '%b-%d-%y')
+
+my.date#the % codes convert the abbreviations into the desired format. I'm assuming they are special for dates.
+
+as.POSIXct('11:02:03',format='%H:%M:%S')#postoperating system something or other
+
+help(strptime) # time reference
+
+strptime('11:02:03',format='%H:%M:%S')
+
+
+
+```
+

@@ -1,0 +1,149 @@
+---
+title: "Section 12: R Programming Basics"
+output: html_notebook
+---
+Logical Operators
+
+```{r}
+# & AND
+# | OR
+# ! NOT
+```
+
+
+if, else, and else if
+
+```{r}
+x <- 10
+if(x==10){
+  print('X is equal to 10.')
+}
+
+ham <- 10
+cheese <- 10
+report <- 'blank'
+
+if (ham >= 10 & cheese >= 10){
+  report <- 'Strong sales of both ham and cheese'
+}else if (hame == 0 & cheese == 0){
+  report <- 'No sales today.'
+}else{
+  report <- 'We sold something!'
+}
+print(report)
+```
+Conditial Statements Training
+
+```{r}
+
+#Ex 1
+x <- 28
+if (x%%2 == 0){
+  print('Even Number')
+}else{
+  print('Not even.')
+}
+
+#Ex 2
+#x <- matrix(1:9, nrow = 3, ncol = 3)
+x <- 4
+if (is.matrix(x)){
+  print('Is a matrix.')
+}else{
+  print('Not a matrix.')
+}
+
+#Ex3
+
+#I'm cheating... there's no need to make this crap up when you ahve built in functions.
+ x <- c(1,8,2)
+ print(sort(x))
+ 
+ #Ex4
+ #Cheating again
+ print(max(x))
+
+```
+While Loops
+#while loops are while loops... use break to break out of them.
+
+For loops
+#only difference from Python is that we have matrices and vectors and lists
+#Matrices iterate down columns from left to right.
+#Can the matrix iteration be changed
+
+
+Functions
+
+```{r}
+name_of_func <- function(input1,input2,input3=45){
+  #code
+  result <- input1 + input2
+  return(result)#so damn similar to Python
+}
+```
+
+Functions Training Exercises
+
+```{r}
+#Ex 1
+
+prod <- function(num1,num2){
+  product <- num1 * num2
+  return(product)
+}
+prod(3,4)
+
+#Ex 2
+
+hello <- function(name){
+  return(paste("Hello",name))
+}
+hello('Teddy')
+
+#Ex 3
+
+num_count <- function(vect,int){
+  a <- table(vect)
+  return(a[names(a)==int])
+}
+num_count(c(1,2,3,4,5,5,5),5)
+
+#Ex 4
+
+bar_req <- function(kilos){
+  five_bar <- kilos %/% 5
+  one_bar <- kilos %% 5
+  return(five_bar + one_bar)
+}
+
+bar_req(97)
+
+#Ex 5
+
+three_sum <- function(num1,num2,num3){
+  three_list <- c(num1,num2,num3)
+  trip_sum <- 0
+  for (var in three_list){
+    if ((var %% 3) != 0){
+      trip_sum = (trip_sum + var)}}
+  return(trip_sum)
+}
+
+three_sum
+
+#Ex 6
+
+prime_check <- function(num1){
+  prime_vect <- c(2:(num1-1))
+  for (x in prime_vect){
+    if (num1%%x == 0){
+      return(FALSE)
+  }
+  return(TRUE)
+}}
+
+prime_check(18)
+
+```
+

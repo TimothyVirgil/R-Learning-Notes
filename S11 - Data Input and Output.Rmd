@@ -1,0 +1,57 @@
+---
+title: "Section 11: Data Input and Output"
+output: html_notebook
+---
+
+CSV Files with R
+
+```{r}
+write.csv(mtcars,file = 'my_example.csv')
+#comma-separated values
+ex <- read.csv('my_example.csv')
+head(ex)
+write.csv(ex, file = 'my_new_example.csv')
+#pretty basic stuff
+```
+
+Excel Files with R
+
+```{r}
+library(readxl) #import readxl library
+excel_sheets('Alg_A_Q1.xlsx')
+df <- read_excel('Alg_A_Q1.xlsx',sheet = 'Alg_A_Q1')
+head(df)
+entire.workbook <- lapply(excel_sheets('Alg_A_Q1.xlsx'), read_excel,path = 'Alg_A_Q1.xlsx') #upload entire workbook
+library(xlsx)
+write.xlsx(mtcars,'output_example.xlsx')
+```
+
+SQL with R
+#There are different packages for each type of SQL - mySQL, etc.
+
+```{r}
+library(RPostgreSQL)
+??PostgreSQL
+pw <- 'Bahamut073096$'
+
+drv <- dbDriver('PostgreSQL')
+con <- dbConnect(drv, dbname = 'dvdrental',
+                 host = 'localhost', port = 5432,
+                 user = 'postgres', password = pw
+                 )
+
+rm(pw)
+
+dbExistsTable(con,'actor') #it sees actor... nice!
+
+```
+
+Web Scraping with R
+
+```{r}
+library(rvest)
+demo(package = 'rvest')
+demo(package = 'rvest', topic = 'tripadvisor'
+    )
+```
+

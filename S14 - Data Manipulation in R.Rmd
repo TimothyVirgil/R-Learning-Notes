@@ -1,0 +1,11 @@
+---
+title: "Section 14: Data Manipulation in R"
+output: html_notebook
+---
+
+Guide to Using Dplyr
+
+```{r}
+library('dplyr')
+```
+
