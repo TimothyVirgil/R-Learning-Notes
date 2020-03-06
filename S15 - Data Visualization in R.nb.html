@@ -1,0 +1,251 @@
+---
+title: "Data Visualization with R"
+output: html_notebook
+---
+
+Overview of ggplot2
+
+```{r}
+#ggplot2 uses layers
+
+library(ggplot2)
+
+pl <- ggplot(data=mtcars,aes(x=mpg,y=hp)) + geom_point() #data and aesthetics and geometry
+
+pl
+
+pl_fac <- pl + facet_grid(cyl ~.) # facets layer
+
+pl_fac
+
+pl_smooth <- pl_fac + stat_smooth() #stats layer
+
+pl_smooth
+
+pl_coord <- pl_smooth + coord_cartesian(xlim = c(15,25)) # coordinates
+
+pl_coord
+
+pl_theme <- pl_coord + theme_bw()
+
+pl_theme
+```
+
+
+Histograms
+
+```{r message=TRUE}
+
+#check the pdf of ggplot2 reference
+
+library(ggplot2)
+
+library(ggplot2movies)
+
+
+colnames(movies)
+
+head(movies)
+
+#DATA AND AESTHETICS
+
+pl <- ggplot(movies,aes(x=rating))
+
+
+#Geometry
+
+pl + geom_histogram()
+
+pl2 <- pl + geom_histogram(binwidth=0.1,color='black',fill='blue',alpha =0.2) #thinner bins and colored bins
+
+pl3 <- pl2 + xlab('Movie Rating') + ylab('Count')
+
+pl3 + ggtitle('Movie Ratings Histogram')
+
+
+```
+
+Scatterplots
+
+```{r}
+
+library(ggplot2)
+df <- mtcars
+
+#DATA & AESTHETICS
+pl <- ggplot(df,aes(x=wt,y=mpg))
+
+#GEOMETRY
+
+pl + geom_point(aes(size=hp)) #size changes accorirding to value
+
+pl + geom_point(aes(size=factor(cyl)))
+
+pl + geom_point(aes(shape=factor(cyl)),size=5)# changes the shape for each discrete value, good for data sets with only a few values.
+
+pl + geom_point(aes(shape=factor(cyl),color=factor(cyl),size=5))#now color and shape are determined by factors
+
+pl2 <- pl + geom_point(size=5,color='#56ea29') #hex code colors find on internet
+
+pl + geom_point(aes(color=hp),size=5)# continuous blue coloring
+
+pl + geom_point(aes(color=hp),size = 5) + scale_color_gradient(low='blue', high = 'red')# control the gradient for clearer picture
+
+```
+
+
+Barplots
+
+```{r}
+library(ggplot2)
+
+df <- mpg
+
+pl <- ggplot(df,aes(x=class))
+
+pl + geom_bar()
+
+
+#barplot vs histogram - categorical vs continuous data
+
+
+pl + geom_bar(fill = 'blue')
+
+pl + geom_bar(aes(fill = drv),position = 'dodge') #by color the counts fo each type
+
+pl + geom_bar(aes(fill = drv), position = 'fill') #see percentage of each drive type
+
+
+
+
+
+```
+
+
+Boxplots
+
+```{r}
+library(ggplot2)
+
+df <- mtcars
+
+pl <- ggplot(df,aes(x=factor(cyl),y=mpg))
+
+pl + geom_boxplot(aes(fill=factor(cyl))) + coord_flip()#flip x and y #different fill for each type of cylinder
+
+
+
+
+```
+
+Variable Plotting
+
+```{r}
+
+library(ggplot2)
+
+library(ggplot2movies)
+
+pl <- ggplot(movies,aes(x=year,y=rating))
+
+ggplot(movies,aes(x=year,y=rating)) + geom_bin2d() + scale_fill_gradient(high='red',low='blue') #heat map
+
+
+
+ggplot(movies,aes(x=year,y=rating)) + geom_hex() + scale_fill_gradient(high='red',low='blue')
+
+pl + geom_density2d() #density plot
+
+
+
+```
+
+
+Coordinates and faceting
+
+```{r}
+library(ggplot2)
+
+df <- mtcars
+
+pl <- ggplot(mpg,aes(x=displ,y=hwy)) + geom_point()
+
+pl + coord_cartesian(xlim=c(1,4),(ylim = c(15,30)))#set limits
+
+pl + coord_fixed(1/3)
+
+pl + facet_grid(drv ~ cyl)# splits the plot into various facets
+```
+
+Themes
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+
+theme_set(theme_minimal())
+
+pl <- ggplot(mtcars,aes(x=wt,y=mpg)) + geom_point()
+
+pl + theme_dark() #dark theme
+
+pl + theme_economist() #Economist magazine theme
+
+pl + theme_fivethirtyeight()
+
+pl + theme_wsj()
+
+
+
+```
+
+
+ggplot2 Exercises
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+
+df <- mpg
+
+pl <- ggplot(mpg,aes(x=hwy))
+
+pl + geom_histogram(binwidth=1.5,color='white',fill='red',alpha=0.3) #bins = will specify the number of bins instead of width
+
+# l2 <- pl + geom_histogram(binwidth=0.1,color='black',fill='blue',alpha =0.2) #thinner bins and colored bins
+# 
+# pl3 <- pl2 + xlab('Movie Rating') + ylab('Count')
+# 
+# pl3 + ggtitle('Movie Ratings Histogram')
+
+# df <- mpg
+# 
+# pl <- ggplot(df,aes(x=class))
+# 
+# pl + geom_bar()
+# 
+# 
+# #barplot vs histogram - categorical vs continuous data
+# 
+# 
+# pl + geom_bar(fill = 'blue')
+# 
+# pl + geom_bar(aes(fill = drv),position = 'dodge') #by color the counts fo each type
+# 
+# pl + geom_bar(aes(fill = drv), position = 'fill') #see percentage of each drive type
+
+pl <- ggplot(df,aes(x=manufacturer))
+
+pl + geom_bar(aes(fill = factor(cyl)) #use factor if there is not a continuous variable.
+
+df <- txhousing
+
+pl <- ggplot(df,aes(x=sales,y=volume))
+
+pl2 <- pl + geom_point(color='blue',alpha = 0.5,size=3)
+
+pl2 + geom_smooth(color='red',size=2)
+
+```
+
+
